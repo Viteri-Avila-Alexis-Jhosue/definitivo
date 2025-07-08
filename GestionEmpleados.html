@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Empleados - S.I.V</title>
+  <link rel="stylesheet" href="Inventario.css">
+  <style>
+    .busqueda-empleados {
+      margin: 1rem auto;
+      max-width: 500px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .busqueda-empleados input {
+      width: 100%;
+      padding: 0.7rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .tabla-empleados {
+      width: 100%;
+      margin-top: 1rem;
+      border-collapse: collapse;
+    }
+
+    .tabla-empleados th,
+    .tabla-empleados td {
+      padding: 0.75rem;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .tabla-empleados th {
+      background-color: #f5f5f5;
+    }
+
+    .acciones button {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 5px;
+      margin: 0 0.2rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .btn-editar {
+      background-color: #2196f3;
+      color: white;
+    }
+
+    .btn-eliminar {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .formulario-edicion {
+      max-width: 600px;
+      margin: 2rem auto;
+      background-color: #f8f8f8;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .formulario-edicion label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .formulario-edicion input {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .formulario-edicion button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+
+    .formulario-edicion .cancelar {
+      background-color: #999;
+      margin-left: 1rem;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-menu {
+      font-size: 1.6rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #333;
+      padding: 0.3rem 0.6rem;
+    }
+
+    .menu-lateral {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 200px;
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-right: 1px solid #ccc;
+      height: calc(100% - 60px);
+      display: none;
+    }
+
+    .menu-lateral ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .menu-lateral li {
+      margin: 0.8rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-lateral img {
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .menu-lateral span {
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .menu-lateral.mostrar {
+      display: block;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    .sin-resultados {
+      text-align: center;
+      margin-top: 1rem;
+      font-style: italic;
+      color: #999;
+    }
+
+    .menu-lateral a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    }
+
+  </style>
+</head>
+<body>
+
+<header class="barra-superior">
+  <div class="menu-izquierdo">
+    <button class="btn-menu" id="toggle-menu">☰</button>
+    <a href="MenuPrincipal.html" class="titulo-header" style="text-decoration: none; color: inherit;">Menu</a>
+  </div>
+  <div class="usuario">
+    <div class="usuario-info">
+      <div class="nombre-usuario">User34234</div>
+      <div class="rol-usuario">Administrador</div>
+    </div>
+    <img src="imgs/user.png" alt="Foto de perfil">
+  </div>
+</header>
+
+<nav class="menu-lateral oculto" id="menu-lateral">
+  <ul>
+    <li><a href="MenuInventario.html"><img src="imgs/Inventario0.png" alt=""><span>Inventario</span></a></li>
+    <li><a href="MenuVentas.html"><img src="imgs/Venta.png" alt=""><span>Ventas</span></a></li>
+    <li><a href="MenuProductos.html"><img src="imgs/producto.png" alt=""><span>Productos</span></a></li>
+    <li><a href="GestionEmpleados.html"><img src="imgs/Empleados.png" alt=""><span>Empleados</span></a></li>
+    <li><a href="Reportes.html"><img src="imgs/Reportes.png" alt=""><span>Reportes</span></a></li>
+    <li><a href="Ajustes.html"><img src="imgs/Ajustes.png" alt=""><span>Ajustes</span></a></li>
+    <li><a href="CuentaUsuario.html"><img src="imgs/Cuenta.png" alt=""><span>Cuenta</span></a></li>
+    <li><a href="Ayuda.html"><img src="imgs/Ayuda.png" alt=""><span>Ayuda</span></a></li>
+  </ul>
+</nav>
+
+<main class="main-contenido">
+  <h2 class="titulo-panel">Buscar y Gestionar Empleados</h2>
+
+  <div class="busqueda-empleados">
+    <input type="text" id="input-busqueda" placeholder="Buscar por nombre o cargo...">
+  </div>
+
+  <div id="contenedor-tabla"></div>
+  <div id="formulario-dinamico"></div>
+</main>
+
+<script>
+  const toggleBtn = document.getElementById('toggle-menu');
+  const menuLateral = document.getElementById('menu-lateral');
+  toggleBtn.addEventListener('click', () => {
+    menuLateral.classList.toggle('mostrar');
+  });
+
+  const empleados = [
+    { id: "E001", nombre: "Laura Gómez", cargo: "Cajera", email: "laura@siv.com" },
+    { id: "E002", nombre: "Carlos Méndez", cargo: "Supervisor", email: "carlos@siv.com" },
+    { id: "E003", nombre: "Diana Pérez", cargo: "Vendedora", email: "diana@siv.com" }
+  ];
+
+  const inputBusqueda = document.getElementById("input-busqueda");
+  const contenedor = document.getElementById("contenedor-tabla");
+  const formulario = document.getElementById("formulario-dinamico");
+
+  inputBusqueda.addEventListener("input", () => {
+    const texto = inputBusqueda.value.trim().toLowerCase();
+    const filtrados = empleados.filter(e =>
+      e.nombre.toLowerCase().includes(texto) || e.cargo.toLowerCase().includes(texto)
+    );
+    renderizarTabla(filtrados);
+  });
+
+  function renderizarTabla(lista) {
+    formulario.innerHTML = "";
+    if (lista.length === 0) {
+      contenedor.innerHTML = `<p class="sin-resultados">No se encontraron empleados.</p>`;
+      return;
+    }
+
+    let tabla = `
+      <table class="tabla-empleados">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Cargo</th>
+            <th>Email</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    lista.forEach(e => {
+      tabla += `
+        <tr>
+          <td>${e.id}</td>
+          <td>${e.nombre}</td>
+          <td>${e.cargo}</td>
+          <td>${e.email}</td>
+          <td class="acciones">
+            <button class="btn-editar" onclick="mostrarFormularioEditar('${e.id}')">Editar</button>
+            <button class="btn-eliminar" onclick="mostrarFormularioEliminar('${e.id}')">Eliminar</button>
+          </td>
+        </tr>
+      `;
+    });
+
+    tabla += "</tbody></table>";
+    contenedor.innerHTML = tabla;
+  }
+
+  function mostrarFormularioEditar(id) {
+    const e = empleados.find(emp => emp.id === id);
+    formulario.innerHTML = `
+      <div class="formulario-edicion">
+        <h3>Editar Empleado ${id}</h3>
+        <label>Nombre</label>
+        <input type="text" id="nombre-editar" value="${e.nombre}">
+        <label>Cargo</label>
+        <input type="text" id="cargo-editar" value="${e.cargo}">
+        <label>Email</label>
+        <input type="email" id="email-editar" value="${e.email}">
+        <p class="error" id="error-editar"></p>
+        <button onclick="guardarEdicion('${id}')">Guardar Cambios</button>
+        <button class="cancelar" onclick="formulario.innerHTML = ''">Cancelar</button>
+      </div>
+    `;
+  }
+
+  function guardarEdicion(id) {
+    const nombre = document.getElementById("nombre-editar").value.trim();
+    const cargo = document.getElementById("cargo-editar").value.trim();
+    const email = document.getElementById("email-editar").value.trim();
+    const error = document.getElementById("error-editar");
+
+    if (!nombre || !cargo || !email) {
+      error.textContent = "Todos los campos son obligatorios.";
+      return;
+    }
+
+    alert("Cambios guardados para el empleado " + id);
+    formulario.innerHTML = "";
+  }
+
+  function mostrarFormularioEliminar(id) {
+    formulario.innerHTML = `
+      <div class="formulario-edicion">
+        <h3>¿Eliminar al empleado ${id}?</h3>
+        <p>Esta acción no se puede deshacer.</p>
+        <button style="background:#f44336;" onclick="confirmarEliminar('${id}')">Eliminar</button>
+        <button class="cancelar" onclick="formulario.innerHTML = ''">Cancelar</button>
+      </div>
+    `;
+  }
+
+  function confirmarEliminar(id) {
+    alert("Empleado eliminado: " + id);
+    formulario.innerHTML = "";
+  }
+
+  renderizarTabla(empleados);
+</script>
+
+</body>
+</html>

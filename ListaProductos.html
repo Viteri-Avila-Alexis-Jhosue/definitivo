@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Productos - S.I.V</title>
+  <link rel="stylesheet" href="Inventario.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <style>
+    .tabla-productos {
+      margin-top: 1rem;
+    }
+
+    table.dataTable thead th {
+      background-color: #f5f5f5;
+      font-weight: 600;
+    }
+
+    .estado-disponible {
+      color: #4caf50;
+      font-weight: bold;
+    }
+
+    .estado-agotado {
+      color: #f44336;
+      font-weight: bold;
+    }
+
+    .contenedor-tabla {
+      padding: 1rem;
+    }
+
+    .detalle-fila {
+      background-color: #f9f9f9;
+    }
+
+    .tarjeta-detalle {
+      border: 2px solid #222;
+      padding: 1rem;
+      border-radius: 8px;
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .estado-alerta.rojo {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: #c62828;
+      color: white;
+      padding: 0.3rem 1rem;
+      font-weight: bold;
+      border-radius: 3px;
+    }
+
+    .btn-volver {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #222;
+    margin-right: 1rem;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out;
+    }
+
+    .btn-volver:hover {
+    color: #007BFF;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="barra-superior">
+    <div class="menu-izquierdo">
+        <a href="MenuInventario.html" class="btn-volver">←</a>
+        <span class="titulo-header">Lista de Productos</span>
+    </div>
+    <div class="usuario">
+        <div class="usuario-info">
+        <div class="nombre-usuario">User34234</div>
+        <div class="rol-usuario">Administrador</div>
+        </div>
+        <img src="imgs/user.png" alt="Foto de perfil">
+    </div>
+    </header>
+
+
+  <nav class="menu-lateral oculto" id="menu-lateral">
+    <ul>
+      <li><img src="imgs/Inventario0.png" alt=""><span>Inventario</span></li>
+      <li><img src="imgs/Venta.png" alt=""><span>Ventas</span></li>
+      <li><img src="imgs/producto.png" alt=""><span>Productos</span></li>
+      <li><img src="imgs/Empleados.png" alt=""><span>Empleados</span></li>
+      <li><img src="imgs/Reportes.png" alt=""><span>Reportes</span></li>
+      <li><img src="imgs/Ajustes.png" alt=""><span>Ajustes</span></li>
+      <li><img src="imgs/Cuenta.png" alt=""><span>Cuenta</span></li>
+      <li><img src="imgs/Ayuda.png" alt=""><span>Ayuda</span></li>
+    </ul>
+  </nav>
+
+  <main class="main-contenido">
+    <h2 class="titulo-panel">Lista de Productos</h2>
+
+    <div class="tarjeta tarjeta-productos contenedor-tabla">
+      <div class="encabezado">Catálogo de Productos</div>
+      <p class="ubicacion">Inventario disponible</p>
+
+      <div class="tabla-productos">
+        <table id="tabla-productos" class="display" style="width:100%">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <!-- Reemplaza solo el <tbody> completo por este -->
+                <tbody>
+                <!-- Fila normal -->
+                <tr class="click-detalle">
+                    <td>#001</td>
+                    <td>Laptop HP 15</td>
+                    <td>Electrónica</td>
+                    <td>$800</td>
+                    <td>12</td>
+                    <td><span class="estado-disponible">Disponible</span></td>
+                </tr>
+
+                <!-- Las otras filas -->
+                <tr>
+                    <td>#002</td>
+                    <td>Mouse Inalámbrico</td>
+                    <td>Accesorios</td>
+                    <td>$25</td>
+                    <td>0</td>
+                    <td><span class="estado-agotado">Agotado</span></td>
+                </tr>
+                <tr>
+                    <td>#003</td>
+                    <td>Monitor Dell 24"</td>
+                    <td>Periféricos</td>
+                    <td>$230</td>
+                    <td>6</td>
+                    <td><span class="estado-disponible">Disponible</span></td>
+                </tr>
+                </tbody>
+
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script>
+  $(document).ready(function () {
+    const tabla = $('#tabla-productos').DataTable({
+      pageLength: 5,
+      language: {
+        search: "Buscar:",
+        lengthMenu: "Mostrar _MENU_ registros",
+        info: "Mostrando _START_ a _END_ de _TOTAL_ productos",
+        paginate: {
+          first: "Primero",
+          last: "Último",
+          next: "Siguiente",
+          previous: "Anterior"
+        },
+        zeroRecords: "No se encontraron productos",
+      }
+    });
+
+    // Insertar fila de detalle después de hacer clic
+    $('#tabla-productos tbody').on('click', 'tr.click-detalle', function () {
+      const $fila = $(this);
+      const yaExiste = $fila.next().hasClass('detalle-fila');
+
+      // Eliminar si ya existe
+      if (yaExiste) {
+        $fila.next().remove();
+        return;
+      }
+
+      // Cerrar otros detalles
+      $('#tabla-productos tbody .detalle-fila').remove();
+
+      // Crear fila con detalle
+      const detalle = `
+        <tr class="detalle-fila">
+          <td colspan="6">
+            <div class="tarjeta-detalle">
+              <div class="estado-alerta rojo">NO STOCK</div>
+              <p><strong>Código:</strong> #435435</p>
+              <p><strong>Disponible:</strong> 0</p>
+              <p><strong>Próximos a llegar:</strong> 60</p>
+              <p><strong>Cantidad vendida:</strong> 102</p>
+              <p><strong>Vendidos el mes anterior:</strong> 30</p>
+              <p><strong>Descripción:</strong><br>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </td>
+        </tr>
+      `;
+
+      $fila.after(detalle);
+    });
+
+    // Toggle menú lateral
+    const toggleBtn = document.getElementById('toggle-menu');
+    const menuLateral = document.getElementById('menu-lateral');
+    toggleBtn.addEventListener('click', () => {
+      menuLateral.classList.toggle('oculto');
+    });
+  });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ayuda - S.I.V</title>
+  <link rel="stylesheet" href="Inventario.css" />
+  <style>
+    .main-contenido {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .ayuda-titulo {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .faq {
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      background: white;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    .faq h3 {
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+    }
+
+    .faq p {
+      margin-top: 0.8rem;
+      display: none;
+    }
+
+    .faq.activo p {
+      display: block;
+    }
+
+    .btn-menu {
+      font-size: 1.6rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #333;
+      padding: 0.3rem 0.6rem;
+    }
+
+    .menu-lateral {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 200px;
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-right: 1px solid #ccc;
+      height: calc(100% - 60px);
+      display: none;
+    }
+
+    .menu-lateral ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .menu-lateral li {
+      margin: 0.8rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-lateral img {
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .menu-lateral span {
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .menu-lateral.mostrar {
+      display: block;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    .menu-lateral a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="barra-superior">
+    <div class="menu-izquierdo">
+      <button class="btn-menu" id="toggle-menu">☰</button>
+      <a href="MenuPrincipal.html" class="titulo-header" style="text-decoration: none; color: inherit;">Menu</a>
+    </div>
+    <div class="usuario">
+      <div class="usuario-info">
+        <div class="nombre-usuario">User34234</div>
+        <div class="rol-usuario">Administrador</div>
+      </div>
+      <img src="imgs/user.png" alt="Foto de perfil" />
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="menu-lateral oculto" id="menu-lateral">
+  <ul>
+    <li><a href="MenuInventario.html"><img src="imgs/Inventario0.png" alt=""><span>Inventario</span></a></li>
+    <li><a href="MenuVentas.html"><img src="imgs/Venta.png" alt=""><span>Ventas</span></a></li>
+    <li><a href="MenuProductos.html"><img src="imgs/producto.png" alt=""><span>Productos</span></a></li>
+    <li><a href="GestionEmpleados.html"><img src="imgs/Empleados.png" alt=""><span>Empleados</span></a></li>
+    <li><a href="Reportes.html"><img src="imgs/Reportes.png" alt=""><span>Reportes</span></a></li>
+    <li><a href="Ajustes.html"><img src="imgs/Ajustes.png" alt=""><span>Ajustes</span></a></li>
+    <li><a href="CuentaUsuario.html"><img src="imgs/Cuenta.png" alt=""><span>Cuenta</span></a></li>
+    <li><a href="Ayuda.html"><img src="imgs/Ayuda.png" alt=""><span>Ayuda</span></a></li>
+  </ul>
+</nav>
+
+
+
+  <!-- CONTENIDO -->
+  <main class="main-contenido">
+    <h2 class="ayuda-titulo">Manual de Usuario - Sistema S.I.V</h2>
+
+    <div class="faq">
+      <h3>¿Cómo gestiono productos? <span>➤</span></h3>
+      <p>Dirígete a la sección "Productos". Allí puedes buscar, editar o eliminar productos existentes desde la misma pantalla utilizando el botón correspondiente.</p>
+    </div>
+
+    <div class="faq">
+      <h3>¿Cómo registro una venta? <span>➤</span></h3>
+      <p>Ve al módulo "Ventas" y selecciona la opción "Registrar Venta". Podrás añadir múltiples productos, ver el total y confirmar la transacción.</p>
+    </div>
+
+    <div class="faq">
+      <h3>¿Puedo ver reportes mensuales? <span>➤</span></h3>
+      <p>Sí, accede al módulo "Reportes" y selecciona "Reporte Mensual" o "Reporte por Fechas". Allí podrás consultar detalles de ventas y productos vendidos.</p>
+    </div>
+
+    <div class="faq">
+      <h3>¿Dónde cambio el tema o el tamaño del texto? <span>➤</span></h3>
+      <p>Ingresa a "Ajustes". Ahí podrás cambiar entre tema claro y oscuro, y ajustar el tamaño de fuente a tu preferencia.</p>
+    </div>
+
+    <div class="faq">
+      <h3>¿Cómo consulto mis datos de usuario? <span>➤</span></h3>
+      <p>En el módulo "Cuenta" verás tu información personal, como nombre de usuario, correo electrónico y rol dentro del sistema.</p>
+    </div>
+
+    <div class="faq">
+      <h3>¿Cómo uso el menú lateral? <span>➤</span></h3>
+      <p>Haz clic en el ícono ☰ (tres líneas) para desplegar el menú lateral y navegar entre las secciones del sistema.</p>
+    </div>
+
+  </main>
+
+  <script>
+    const toggleBtn = document.getElementById('toggle-menu');
+    const menuLateral = document.getElementById('menu-lateral');
+    toggleBtn.addEventListener('click', () => {
+      menuLateral.classList.toggle('mostrar');
+    });
+
+    // Comportamiento FAQ desplegable
+    document.querySelectorAll('.faq').forEach(faq => {
+      faq.addEventListener('click', () => {
+        faq.classList.toggle('activo');
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: white;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  color: #222;
+}
+
+.logo strong {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.subtitulo {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.2rem;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.menu ul li a:hover {
+  color: #007BFF;
+}
+
+.titulo-panel {
+  text-align: center;
+  margin: 2rem 0 1rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 0 2rem 2rem;
+}
+
+.tarjeta {
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background-color: white;
+  border-left: 6px solid #ccc;
+  transition: transform 0.2s ease-in-out;
+}
+
+.tarjeta:hover {
+  transform: scale(1.02);
+}
+
+.encabezado {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.ubicacion {
+  margin: 0.5rem 0;
+  font-weight: 500;
+  color: #444;
+}
+
+.estado {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.badge-principal {
+  background-color: #333;
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.badge-secundario {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* espacio entre el ícono y el texto */
+  color: #222;
+}
+
+.logo-img {
+  height: 40px;
+}
+
+.graficos {
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.contenedor-graficos {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  max-width: 2000px;
+  margin: 0 auto;
+}
+
+.tarjeta-grafico {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tarjeta-grafico canvas {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+/* ===== Barra superior (del index) ===== */
+.barra-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 16px 24px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.menu-izquierdo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-menu {
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
+.titulo-header {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.usuario-info {
+  text-align: right;
+}
+
+.nombre-usuario {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.rol-usuario {
+  font-size: 13px;
+  color: #777;
+}
+
+.usuario img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.oculto {
+  display: none;
+}
+.menu-lateral ul li img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+
+.menu-lateral {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 260px;
+  height: calc(100% - 72px);
+  background-color: #e3e7ec;
+  padding-top: 20px;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.menu-lateral ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-lateral li {
+  display: flex;
+  align-items: center;
+  padding: 18px 24px;
+  gap: 16px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 500;
+  color: #2c3e50;
+  transition: background 0.2s, color 0.2s;
+}
+
+.menu-lateral li:hover {
+  background-color: #d6dde5;
+}
+
+.main-contenido {
+  padding: 2rem;
+  background-color: #f3f6f9;
+}
+
+.tabla-productos {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.tabla-productos table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.tabla-productos th, .tabla-productos td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tabla-productos thead {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.tabla-productos tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.menu-lateral a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+/* Colores específicos para las 3 tarjetas activas */
+.tarjeta-productos { border-left-color: #2196f3; } /* azul */
+.tarjeta-ordenes   { border-left-color: #4caf50; } /* verde */
+.tarjeta-inventario { border-left-color: #ff9800; } /* naranja */

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>S.I.V - Menu Principal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="MenuPrincipal.css">
+</head>
+<body>
+  <header class="barra-superior">
+    <div class="menu-izquierdo">
+      <button class="btn-menu" id="toggle-menu">☰</button>
+      <span class="titulo-header">Menu</span>
+    </div>
+    <div class="usuario">
+      <div class="usuario-info">
+        <div class="nombre-usuario">User34234</div>
+        <div class="rol-usuario">Administrador</div>
+      </div>
+      <img src="imgs/user.png" alt="Foto de perfil">
+    </div>
+  </header>
+
+  <div class="contenedor">
+    <nav class="menu-lateral" id="menu-lateral">
+  <ul>
+    <li><a href="MenuInventario.html"><img src="imgs/Inventario0.png" alt=""><span>Inventario</span></a></li>
+    <li><a href="MenuVentas.html"><img src="imgs/Venta.png" alt=""><span>Ventas</span></a></li>
+    <li><a href="MenuProductos.html"><img src="imgs/producto.png" alt=""><span>Productos</span></a></li>
+    <li><a href="GestionEmpleados.html"><img src="imgs/Empleados.png" alt=""><span>Empleados</span></a></li>
+    <li><a href="Reportes.html"><img src="imgs/Reportes.png" alt=""><span>Reportes</span></a></li>
+    <li><a href="Ajustes.html"><img src="imgs/Ajustes.png" alt=""><span>Ajustes</span></a></li>
+    <li><a href="CuentaUsuario.html"><img src="imgs/Cuenta.png" alt=""><span>Cuenta</span></a></li>
+    <li><a href="Ayuda.html"><img src="imgs/Ayuda.png" alt=""><span>Ayuda</span></a></li>
+  </ul>
+</nav>
+
+
+    <main class="contenido-principal">
+    <img src="imgs/logo.png" alt="Logo" class="logo-central">
+    <h2 class="titulo-sistema">S.I.V</h2>
+    <p class="subtitulo-sistema">Sistema de Inventario y ventas</p>
+    <p class="bienvenida"><strong>¡Bienvenido, User34234!</strong></p>
+    </main>
+
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('toggle-menu');
+    const menuLateral = document.getElementById('menu-lateral');
+    toggleBtn.addEventListener('click', () => {
+      menuLateral.classList.toggle('oculto');
+    });
+  </script>
+</body>
+</html>

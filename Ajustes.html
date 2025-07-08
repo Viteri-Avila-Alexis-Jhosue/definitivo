@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajustes - S.I.V</title>
+  <link rel="stylesheet" href="Inventario.css" />
+  <style>
+    body.tema-oscuro {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    .main-contenido {
+      padding: 2rem;
+    }
+
+    .tarjetas-ajustes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .tarjeta-ajuste {
+      background-color: white;
+      border-left: 5px solid #2196f3;
+      border-radius: 12px;
+      padding: 1.5rem;
+      width: 280px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    body.tema-oscuro .tarjeta-ajuste {
+      background-color: #1e1e1e;
+      border-color: #90caf9;
+    }
+
+    .tarjeta-ajuste h3 {
+      margin-bottom: 1rem;
+    }
+
+    .tarjeta-ajuste select {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .tarjeta-ajuste select:focus {
+      outline: none;
+      border-color: #2196f3;
+    }
+
+    .btn-menu {
+      font-size: 1.6rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #333;
+      padding: 0.3rem 0.6rem;
+    }
+
+    .menu-lateral {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 200px;
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-right: 1px solid #ccc;
+      height: calc(100% - 60px);
+      display: none;
+    }
+
+    .menu-lateral ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .menu-lateral li {
+      margin: 0.8rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-lateral img {
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .menu-lateral span {
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .menu-lateral.mostrar {
+      display: block;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    .menu-lateral a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="barra-superior">
+    <div class="menu-izquierdo">
+      <button class="btn-menu" id="toggle-menu">☰</button>
+      <a href="MenuPrincipal.html" class="titulo-header" style="text-decoration: none; color: inherit;">Menu</a>
+    </div>
+    <div class="usuario">
+      <div class="usuario-info">
+        <div class="nombre-usuario">User34234</div>
+        <div class="rol-usuario">Administrador</div>
+      </div>
+      <img src="imgs/user.png" alt="Foto de perfil">
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="menu-lateral oculto" id="menu-lateral">
+  <ul>
+    <li><a href="MenuInventario.html"><img src="imgs/Inventario0.png" alt=""><span>Inventario</span></a></li>
+    <li><a href="MenuVentas.html"><img src="imgs/Venta.png" alt=""><span>Ventas</span></a></li>
+    <li><a href="MenuProductos.html"><img src="imgs/producto.png" alt=""><span>Productos</span></a></li>
+    <li><a href="GestionEmpleados.html"><img src="imgs/Empleados.png" alt=""><span>Empleados</span></a></li>
+    <li><a href="Reportes.html"><img src="imgs/Reportes.png" alt=""><span>Reportes</span></a></li>
+    <li><a href="Ajustes.html"><img src="imgs/Ajustes.png" alt=""><span>Ajustes</span></a></li>
+    <li><a href="CuentaUsuario.html"><img src="imgs/Cuenta.png" alt=""><span>Cuenta</span></a></li>
+    <li><a href="Ayuda.html"><img src="imgs/Ayuda.png" alt=""><span>Ayuda</span></a></li>
+  </ul>
+</nav>
+
+  <!-- CONTENIDO -->
+  <main class="main-contenido">
+    <h2 class="titulo-panel">Ajustes del Sistema</h2>
+
+    <div class="tarjetas-ajustes">
+      <div class="tarjeta-ajuste">
+        <h3>Tema</h3>
+        <select id="select-tema">
+          <option value="claro">Claro</option>
+          <option value="oscuro">Oscuro</option>
+        </select>
+      </div>
+
+      <div class="tarjeta-ajuste">
+        <h3>Tamaño de Fuente</h3>
+        <select id="select-fuente">
+          <option value="small">Pequeño</option>
+          <option value="medium" selected>Mediano</option>
+          <option value="large">Grande</option>
+        </select>
+      </div>
+    </div>
+  </main>
+
+  <!-- SCRIPT -->
+  <script>
+    const toggleBtn = document.getElementById('toggle-menu');
+    const menuLateral = document.getElementById('menu-lateral');
+    toggleBtn.addEventListener('click', () => {
+      menuLateral.classList.toggle('mostrar');
+    });
+
+    const selectTema = document.getElementById('select-tema');
+    const selectFuente = document.getElementById('select-fuente');
+
+    // Cambiar tema
+    selectTema.addEventListener('change', () => {
+      if (selectTema.value === 'oscuro') {
+        document.body.classList.add('tema-oscuro');
+      } else {
+        document.body.classList.remove('tema-oscuro');
+      }
+    });
+
+    // Cambiar tamaño de fuente
+    selectFuente.addEventListener('change', () => {
+      const tamaño = selectFuente.value;
+      document.body.style.fontSize = tamaño === 'small' ? '14px' : tamaño === 'large' ? '18px' : '16px';
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar Venta - SIV</title>
+  <link rel="stylesheet" href="Inventario.css">
+  <style>
+    .form-venta {
+      max-width: 800px;
+      margin: 2rem auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .form-venta h2 {
+      margin-bottom: 1rem;
+    }
+    .grupo-campo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .grupo-campo input,
+    .grupo-campo select {
+      flex: 1 1 200px;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .btn-agregar {
+      background-color: #2196f3;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn-agregar:hover {
+      background-color: #1976d2;
+    }
+    .tabla-venta {
+      margin-top: 1rem;
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .tabla-venta th,
+    .tabla-venta td {
+      padding: 0.5rem;
+      border: 1px solid #eee;
+      text-align: center;
+    }
+    .total {
+      text-align: right;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header class="barra-superior">
+    <div class="menu-izquierdo">
+        <a href="MenuVentas.html" class="btn-volver" title="Volver">&#8592;</a>
+        <span class="titulo-header">Lista de Productos</span>
+    </div>
+    <div class="usuario">
+        <div class="usuario-info">
+        <div class="nombre-usuario">User34234</div>
+        <div class="rol-usuario">Administrador</div>
+        </div>
+        <img src="imgs/user.png" alt="Foto de perfil">
+    </div>
+    </header>
+
+
+  <main class="form-venta">
+    <h2>Formulario de Venta</h2>
+    <div class="grupo-campo">
+      <input type="text" id="producto" placeholder="Producto">
+      <input type="number" id="cantidad" placeholder="Cantidad">
+      <input type="number" id="precio" placeholder="Precio Unitario">
+      <button class="btn-agregar" onclick="agregarProducto()">Agregar</button>
+    </div>
+
+    <table class="tabla-venta" id="tablaVenta">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="total">Total: $<span id="totalVenta">0.00</span></div>
+  </main>
+
+  <script>
+    function agregarProducto() {
+      const producto = document.getElementById('producto').value;
+      const cantidad = parseFloat(document.getElementById('cantidad').value);
+      const precio = parseFloat(document.getElementById('precio').value);
+      if (!producto || isNaN(cantidad) || isNaN(precio)) return;
+
+      const subtotal = cantidad * precio;
+      const fila = `<tr><td>${producto}</td><td>${cantidad}</td><td>$${precio.toFixed(2)}</td><td>$${subtotal.toFixed(2)}</td></tr>`;
+      document.querySelector('#tablaVenta tbody').insertAdjacentHTML('beforeend', fila);
+
+      const total = Array.from(document.querySelectorAll('#tablaVenta tbody tr')).reduce((acc, tr) => {
+        return acc + parseFloat(tr.cells[3].innerText.replace('$',''));
+      }, 0);
+
+      document.getElementById('totalVenta').innerText = total.toFixed(2);
+
+      // Limpiar campos
+      document.getElementById('producto').value = '';
+      document.getElementById('cantidad').value = '';
+      document.getElementById('precio').value = '';
+    }
+  </script>
+</body>
+</html>

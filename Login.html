@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ingreso - S.I.V</title>
+  <link rel="stylesheet" href="Login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .mensaje-error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    .toggle {
+      cursor: pointer;
+      margin-left: 8px;
+      font-size: 18px;
+      user-select: none;
+      color: #555;
+      position: relative;
+      top: -2px; /* mueve el icono hacia arriba */
+      left: 10px; 
+    }
+
+
+    .campo-password {
+      display: flex;
+      align-items: center;
+    }
+
+    .campo-password input {
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="lado-izquierdo">
+      <img src="imgs/logo.png" alt="Logo" class="logo">
+      <h1 class="titulo">S.I.V</h1>
+      <p class="bienvenida">Bienvenido a SIV</p>
+      <p class="subtitulo">Sistema de Inventario</p>
+    </div>
+
+    <div class="separador"></div>
+
+    <div class="lado-derecho">
+      <h2 class="form-titulo">Ingresar</h2>
+      <form id="form-login">
+        <label for="usuario">Usuario</label>
+        <input type="text" id="usuario" placeholder="Ingrese su usuario">
+
+        <!-- Dentro del <form> -->
+        <label for="clave">Contraseña</label>
+        <div class="campo-password">
+          <input type="password" id="clave" placeholder="Ingrese su contraseña">
+          <i class="toggle fa-solid fa-eye" id="verClave"></i>
+        </div>
+
+
+        <div id="mensaje-error" class="mensaje-error"></div>
+
+        <button type="submit" class="btn-ingresar">Ingresar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Script actualizado -->
+<script>
+  const toggle = document.getElementById('verClave');
+  const passwordInput = document.getElementById('clave');
+  const form = document.getElementById('form-login');
+  const usuario = document.getElementById('usuario');
+  const mensajeError = document.getElementById('mensaje-error');
+
+  toggle.addEventListener('click', () => {
+    const tipo = passwordInput.getAttribute('type');
+    if (tipo === 'password') {
+      passwordInput.setAttribute('type', 'text');
+      toggle.classList.remove('fa-eye');
+      toggle.classList.add('fa-eye-slash');
+    } else {
+      passwordInput.setAttribute('type', 'password');
+      toggle.classList.remove('fa-eye-slash');
+      toggle.classList.add('fa-eye');
+    }
+  });
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const user = usuario.value.trim();
+    const pass = passwordInput.value.trim();
+
+    if (user === '' || pass === '') {
+      mensajeError.textContent = 'Por favor, complete todos los campos.';
+      mensajeError.style.display = 'block';
+    } else if (user === 'admin' && pass === 'admin') {
+      mensajeError.style.display = 'none';
+      window.location.href = 'MenuPrincipal.html';
+    } else {
+      mensajeError.textContent = 'Usuario o contraseña incorrectos.';
+      mensajeError.style.display = 'block';
+    }
+  });
+</script>
+
+
+
+</body>
+</html>

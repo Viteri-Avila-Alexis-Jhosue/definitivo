@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuenta - S.I.V</title>
+  <link rel="stylesheet" href="Inventario.css" />
+  <style>
+    .tarjeta {
+      cursor: pointer;
+    }
+
+    .contenedor-cuenta {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .contenedor-cuenta h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    .contenido-usuario {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .imagen-usuario-cuenta {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #2196f3;
+    }
+
+    .info-datos {
+      flex: 1;
+    }
+
+    .info-campo {
+      margin-bottom: 1.2rem;
+    }
+
+    .info-campo label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    .info-campo input {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      font-size: 1rem;
+    }
+
+    .btn-menu {
+      font-size: 1.6rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #333;
+      padding: 0.3rem 0.6rem;
+    }
+
+    .menu-lateral {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 200px;
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-right: 1px solid #ccc;
+      height: calc(100% - 60px);
+      display: none;
+    }
+
+    .menu-lateral ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .menu-lateral li {
+      margin: 0.8rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-lateral img {
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .menu-lateral span {
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .menu-lateral.mostrar {
+      display: block;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    .menu-lateral a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="barra-superior">
+    <div class="menu-izquierdo">
+      <button class="btn-menu" id="toggle-menu">☰</button>
+      <a href="MenuPrincipal.html" class="titulo-header" style="text-decoration: none; color: inherit;">Menu</a>
+    </div>
+    <div class="usuario">
+      <div class="usuario-info">
+        <div class="nombre-usuario">User34234</div>
+        <div class="rol-usuario">Administrador</div>
+      </div>
+      <img src="imgs/user.png" alt="Foto de perfil">
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="menu-lateral oculto" id="menu-lateral">
+  <ul>
+    <li><a href="MenuInventario.html"><img src="imgs/Inventario0.png" alt=""><span>Inventario</span></a></li>
+    <li><a href="MenuVentas.html"><img src="imgs/Venta.png" alt=""><span>Ventas</span></a></li>
+    <li><a href="MenuProductos.html"><img src="imgs/producto.png" alt=""><span>Productos</span></a></li>
+    <li><a href="GestionEmpleados.html"><img src="imgs/Empleados.png" alt=""><span>Empleados</span></a></li>
+    <li><a href="Reportes.html"><img src="imgs/Reportes.png" alt=""><span>Reportes</span></a></li>
+    <li><a href="Ajustes.html"><img src="imgs/Ajustes.png" alt=""><span>Ajustes</span></a></li>
+    <li><a href="CuentaUsuario.html"><img src="imgs/Cuenta.png" alt=""><span>Cuenta</span></a></li>
+    <li><a href="Ayuda.html"><img src="imgs/Ayuda.png" alt=""><span>Ayuda</span></a></li>
+  </ul>
+</nav>
+
+  <!-- CONTENIDO -->
+  <main class="main-contenido">
+    <div class="contenedor-cuenta">
+      <h2>Información de la Cuenta</h2>
+
+      <div class="contenido-usuario">
+        <img src="imgs/user.png" alt="Foto de perfil" class="imagen-usuario-cuenta">
+
+        <div class="info-datos">
+          <div class="info-campo">
+            <label>Nombre de Usuario</label>
+            <input type="text" readonly value="User34234" />
+          </div>
+
+          <div class="info-campo">
+            <label>Rol</label>
+            <input type="text" readonly value="Administrador" />
+          </div>
+
+          <div class="info-campo">
+            <label>Email</label>
+            <input type="text" readonly value="user34234@siv.com" />
+          </div>
+
+          <div class="info-campo">
+            <label>Fecha de Creación</label>
+            <input type="text" readonly value="12 de Abril de 2024" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- SCRIPT -->
+  <script>
+    const toggleBtn = document.getElementById('toggle-menu');
+    const menuLateral = document.getElementById('menu-lateral');
+    toggleBtn.addEventListener('click', () => {
+      menuLateral.classList.toggle('mostrar');
+    });
+  </script>
+
+</body>
+</html>

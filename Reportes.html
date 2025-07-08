@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reportes - S.I.V</title>
+  <link rel="stylesheet" href="Inventario.css" />
+  <style>
+    .tarjeta {
+      background-color: #fff;
+      border-left: 5px solid #2196f3;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      cursor: pointer;
+      width: 300px;
+      max-width: 90%;
+      transition: transform 0.2s;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-5px);
+    }
+
+    .encabezado {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .ubicacion {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .estado .badge-principal {
+      margin-top: 0.5rem;
+      display: inline-block;
+      background-color: #2196f3;
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    .dashboard {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .btn-menu {
+      font-size: 1.6rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #333;
+      padding: 0.3rem 0.6rem;
+    }
+
+    .menu-lateral {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 200px;
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-right: 1px solid #ccc;
+      height: calc(100% - 60px);
+      display: none;
+    }
+
+    .menu-lateral ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .menu-lateral li {
+      margin: 0.8rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-lateral img {
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .menu-lateral span {
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .menu-lateral.mostrar {
+      display: block;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    .menu-lateral a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="barra-superior">
+    <div class="menu-izquierdo">
+      <button class="btn-menu" id="toggle-menu">☰</button>
+      <a href="MenuPrincipal.html" class="titulo-header" style="text-decoration: none; color: inherit;">Menu</a>
+    </div>
+    <div class="usuario">
+      <div class="usuario-info">
+        <div class="nombre-usuario">User34234</div>
+        <div class="rol-usuario">Administrador</div>
+      </div>
+      <img src="imgs/user.png" alt="Foto de perfil" />
+    </div>
+  </header>
+
+  <nav class="menu-lateral oculto" id="menu-lateral">
+  <ul>
+    <li><a href="MenuInventario.html"><img src="imgs/Inventario0.png" alt=""><span>Inventario</span></a></li>
+    <li><a href="MenuVentas.html"><img src="imgs/Venta.png" alt=""><span>Ventas</span></a></li>
+    <li><a href="MenuProductos.html"><img src="imgs/producto.png" alt=""><span>Productos</span></a></li>
+    <li><a href="GestionEmpleados.html"><img src="imgs/Empleados.png" alt=""><span>Empleados</span></a></li>
+    <li><a href="Reportes.html"><img src="imgs/Reportes.png" alt=""><span>Reportes</span></a></li>
+    <li><a href="Ajustes.html"><img src="imgs/Ajustes.png" alt=""><span>Ajustes</span></a></li>
+    <li><a href="CuentaUsuario.html"><img src="imgs/Cuenta.png" alt=""><span>Cuenta</span></a></li>
+    <li><a href="Ayuda.html"><img src="imgs/Ayuda.png" alt=""><span>Ayuda</span></a></li>
+  </ul>
+</nav>
+
+  <main class="main-contenido">
+    <h2 class="titulo-panel">Módulo de Reportes</h2>
+
+    <div class="dashboard">
+      <div class="tarjeta" onclick="location.href='ReporteMensual.html'">
+        <div class="encabezado">Reporte Mensual</div>
+        <p class="ubicacion">Estadísticas del mes actual</p>
+        <div class="estado">
+          <span class="badge-principal">Ver Reporte</span>
+        </div>
+      </div>
+
+      <div class="tarjeta" onclick="location.href='ReportePorFechas.html'">
+        <div class="encabezado">Reporte por Fechas</div>
+        <p class="ubicacion">Filtrar por rango de fechas</p>
+        <div class="estado">
+          <span class="badge-principal">Ver Reporte</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const toggleBtn = document.getElementById("toggle-menu");
+    const menuLateral = document.getElementById("menu-lateral");
+    toggleBtn.addEventListener("click", () => {
+      menuLateral.classList.toggle("mostrar");
+    });
+  </script>
+
+</body>
+</html>

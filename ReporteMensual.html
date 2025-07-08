@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte Mensual - S.I.V</title>
+  <link rel="stylesheet" href="Inventario.css">
+  <style>
+    .btn-volver {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #333;
+      margin-right: 1rem;
+    }
+
+    .titulo-header {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .grafico-barras {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    .barra {
+      background-color: #2196f3;
+      height: 30px;
+      color: white;
+      padding-left: 0.5rem;
+      line-height: 30px;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+    }
+
+    .tabla-resumen {
+      max-width: 600px;
+      margin: 2rem auto;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 0 6px rgba(0,0,0,0.05);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .tabla-resumen th,
+    .tabla-resumen td {
+      padding: 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .tabla-resumen th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+
+    .tabla-resumen tr:last-child td {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="barra-superior">
+    <div class="menu-izquierdo">
+      <button class="btn-volver" onclick="location.href='Reportes.html'">←</button>
+      <span class="titulo-header">Reporte Mensual</span>
+    </div>
+    <div class="usuario">
+      <div class="usuario-info">
+        <div class="nombre-usuario">User34234</div>
+        <div class="rol-usuario">Administrador</div>
+      </div>
+      <img src="imgs/user.png" alt="Foto de perfil">
+    </div>
+  </header>
+
+  <main class="main-contenido">
+    <h2 class="titulo-panel">Ventas del Mes: Julio 2025</h2>
+
+    <section class="grafico-barras">
+      <h3>Ventas por Categoría</h3>
+      <div class="barra" style="width: 90%;">Electrónica - $4,500</div>
+      <div class="barra" style="width: 70%;">Accesorios - $3,200</div>
+      <div class="barra" style="width: 50%;">Ropa - $2,400</div>
+      <div class="barra" style="width: 30%;">Hogar - $1,100</div>
+    </section>
+
+    <section>
+      <table class="tabla-resumen">
+        <thead>
+          <tr>
+            <th>Categoría</th>
+            <th>Ventas ($)</th>
+            <th>Productos Vendidos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Electrónica</td><td>4,500</td><td>90</td></tr>
+          <tr><td>Accesorios</td><td>3,200</td><td>130</td></tr>
+          <tr><td>Ropa</td><td>2,400</td><td>75</td></tr>
+          <tr><td>Hogar</td><td>1,100</td><td>42</td></tr>
+          <tr><th>Total</th><th>11,200</th><th>337</th></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Órdenes de Entrega - S.I.V</title>
+  <link rel="stylesheet" href="Inventario.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .tabla-ordenes {
+      margin-top: 1rem;
+    }
+
+    table.dataTable thead th {
+      background-color: #f5f5f5;
+      font-weight: 600;
+    }
+
+    .estado-pendiente { color: #ff9800; font-weight: bold; }
+    .estado-entregado { color: #4caf50; font-weight: bold; }
+    .estado-cancelado { color: #f44336; font-weight: bold; }
+
+    .acciones-ordenes button {
+      margin: 0 2px;
+      padding: 0.4rem 0.6rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .acciones-ordenes button i {
+      margin-right: 4px;
+    }
+
+    .btn-entregar {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .btn-editar {
+      background-color: #2196f3;
+      color: white;
+    }
+
+    .btn-cancelar {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .btn-entregar[disabled],
+    .btn-cancelar[disabled] {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    .btn-volver {
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: #222;
+      margin-right: 1rem;
+      font-weight: bold;
+      transition: color 0.2s ease-in-out;
+    }
+
+    .btn-volver:hover {
+      color: #007BFF;
+    }
+
+    .contenedor-tabla {
+      padding: 1rem;
+    }
+
+    .acciones-ordenes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .tooltip {
+      position: relative;
+    }
+
+    .tooltip:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: -1.8em;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="barra-superior">
+    <div class="menu-izquierdo">
+      <a href="MenuInventario.html" class="btn-volver">←</a>
+      <span class="titulo-header">Gestión de Órdenes</span>
+    </div>
+    <div class="usuario">
+      <div class="usuario-info">
+        <div class="nombre-usuario">User34234</div>
+        <div class="rol-usuario">Administrador</div>
+      </div>
+      <img src="imgs/user.png" alt="Foto de perfil">
+    </div>
+  </header>
+
+  <nav class="menu-lateral oculto" id="menu-lateral">
+    <ul>
+      <li><img src="imgs/Inventario0.png" alt=""><span>Inventario</span></li>
+      <li><img src="imgs/Venta.png" alt=""><span>Ventas</span></li>
+      <li><img src="imgs/producto.png" alt=""><span>Productos</span></li>
+      <li><img src="imgs/Empleados.png" alt=""><span>Empleados</span></li>
+      <li><img src="imgs/Reportes.png" alt=""><span>Reportes</span></li>
+      <li><img src="imgs/Ajustes.png" alt=""><span>Ajustes</span></li>
+      <li><img src="imgs/Cuenta.png" alt=""><span>Cuenta</span></li>
+      <li><img src="imgs/Ayuda.png" alt=""><span>Ayuda</span></li>
+    </ul>
+  </nav>
+
+  <main class="main-contenido">
+    <h2 class="titulo-panel">Órdenes de Entrega</h2>
+
+    <div class="tarjeta tarjeta-productos contenedor-tabla">
+      <div class="encabezado">Gestiona las órdenes de forma rápida</div>
+      <p class="ubicacion">Entrega, edición y cancelación desde esta pantalla</p>
+
+      <table id="tabla-ordenes" class="display" style="width:100%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#E001</td>
+            <td>Juan Pérez</td>
+            <td>2025-07-06</td>
+            <td>$245.00</td>
+            <td><span class="estado-pendiente">Pendiente</span></td>
+            <td class="acciones-ordenes">
+              <button class="btn-entregar tooltip" data-tooltip="Marcar como entregada"><i class="fas fa-check"></i>Entregar</button>
+              <button class="btn-editar tooltip" data-tooltip="Editar datos"><i class="fas fa-pen"></i>Editar</button>
+              <button class="btn-cancelar tooltip" data-tooltip="Cancelar orden"><i class="fas fa-times"></i>Cancelar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>#E002</td>
+            <td>Laura Méndez</td>
+            <td>2025-07-05</td>
+            <td>$870.00</td>
+            <td><span class="estado-entregado">Entregado</span></td>
+            <td class="acciones-ordenes">
+              <button class="btn-entregar" disabled><i class="fas fa-check"></i>Entregar</button>
+              <button class="btn-editar tooltip" data-tooltip="Editar datos"><i class="fas fa-pen"></i>Editar</button>
+              <button class="btn-cancelar" disabled><i class="fas fa-times"></i>Cancelar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#tabla-ordenes').DataTable({
+        pageLength: 5,
+        language: {
+          search: "Buscar:",
+          lengthMenu: "Mostrar _MENU_ registros",
+          info: "Mostrando _START_ a _END_ de _TOTAL_ órdenes",
+          paginate: {
+            first: "Primero",
+            last: "Último",
+            next: "Siguiente",
+            previous: "Anterior"
+          },
+          zeroRecords: "No se encontraron órdenes",
+        }
+      });
+
+      // Acciones básicas
+      $('.btn-entregar:not([disabled])').click(function () {
+        alert("Orden marcada como entregada ✅");
+      });
+
+      $('.btn-editar').click(function () {
+        alert("Abrir formulario de edición 📝");
+      });
+
+      $('.btn-cancelar:not([disabled])').click(function () {
+        if (confirm("¿Deseas cancelar esta orden? Esta acción no se puede deshacer.")) {
+          alert("Orden cancelada ❌");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

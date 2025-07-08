@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Top Productos Vendidos - S.I.V</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="Inventario.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <style>
+    .btn-volver {
+      text-decoration: none;
+      font-size: 1.6rem;
+      color: #333;
+      margin-right: 1rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-volver:hover {
+      background-color: #f0f0f0;
+    }
+
+    .tabla-top {
+      margin-top: 1rem;
+    }
+
+    .tabla-top table {
+      width: 100%;
+    }
+
+    .medalla {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .oro { color: gold; }
+    .plata { color: silver; }
+    .bronce { color: #cd7f32; }
+
+    .contenedor-tabla {
+      padding: 2rem;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="barra-superior">
+    <div class="menu-izquierdo">
+      <a href="MenuVentas.html" class="btn-volver" title="Volver">&#8592;</a>
+      <span class="titulo-header">Top Productos Vendidos</span>
+    </div>
+    <div class="usuario">
+      <div class="usuario-info">
+        <div class="nombre-usuario">User34234</div>
+        <div class="rol-usuario">Administrador</div>
+      </div>
+      <img src="imgs/user.png" alt="Foto de perfil">
+    </div>
+  </header>
+
+  <main class="main-contenido">
+    <h2 class="titulo-panel">Ranking de Ventas</h2>
+
+    <div class="contenedor-tabla">
+      <table id="tabla-top" class="display">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Producto</th>
+            <th>Unidades Vendidas</th>
+            <th>Ingresos</th>
+            <th>Categoría</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="medalla oro">🥇</span></td>
+            <td>Laptop HP 15</td>
+            <td>320</td>
+            <td>$256,000</td>
+            <td>Electrónica</td>
+          </tr>
+          <tr>
+            <td><span class="medalla plata">🥈</span></td>
+            <td>Mouse Inalámbrico</td>
+            <td>290</td>
+            <td>$7,250</td>
+            <td>Accesorios</td>
+          </tr>
+          <tr>
+            <td><span class="medalla bronce">🥉</span></td>
+            <td>Monitor Dell 24"</td>
+            <td>210</td>
+            <td>$48,300</td>
+            <td>Periféricos</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Teclado Mecánico</td>
+            <td>150</td>
+            <td>$13,500</td>
+            <td>Accesorios</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Disco SSD 512GB</td>
+            <td>122</td>
+            <td>$10,980</td>
+            <td>Almacenamiento</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#tabla-top').DataTable({
+        pageLength: 5,
+        language: {
+          search: "Buscar:",
+          lengthMenu: "Mostrar _MENU_ registros",
+          info: "Mostrando _START_ a _END_ de _TOTAL_ productos",
+          paginate: {
+            first: "Primero",
+            last: "Último",
+            next: "Siguiente",
+            previous: "Anterior"
+          },
+          zeroRecords: "No se encontraron resultados",
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

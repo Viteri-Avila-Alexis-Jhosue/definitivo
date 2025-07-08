@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Historial de Ventas - SIV</title>
+  <link rel="stylesheet" href="Inventario.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+</head>
+<body>
+  <header class="barra-superior">
+  <div class="menu-izquierdo">
+    <a href="MenuVentas.html" class="btn-volver" title="Volver">&#8592;</a>
+    <span class="titulo-header">Lista de Productos</span>
+  </div>
+  <div class="usuario">
+    <div class="usuario-info">
+      <div class="nombre-usuario">User34234</div>
+      <div class="rol-usuario">Administrador</div>
+    </div>
+    <img src="imgs/user.png" alt="Foto de perfil">
+  </div>
+</header>
+
+
+  <main class="main-contenido">
+    <div class="tarjeta tarjeta-productos contenedor-tabla">
+      <div class="encabezado">Ventas Registradas</div>
+      <p class="ubicacion">Visualización de todas las ventas</p>
+
+      <table id="tablaHistorial" class="display" style="width:100%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Total</th>
+            <th>Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#001</td>
+            <td>2025-07-03</td>
+            <td>Juan Pérez</td>
+            <td>$180.00</td>
+            <td><button onclick="alert('Ver detalle de la venta #001')">Ver</button></td>
+          </tr>
+          <tr>
+            <td>#002</td>
+            <td>2025-07-02</td>
+            <td>Laura Gómez</td>
+            <td>$75.00</td>
+            <td><button onclick="alert('Ver detalle de la venta #002')">Ver</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#tablaHistorial').DataTable({
+        pageLength: 5,
+        language: {
+          search: "Buscar:",
+          lengthMenu: "Mostrar _MENU_ registros",
+          info: "Mostrando _START_ a _END_ de _TOTAL_ ventas",
+          paginate: {
+            first: "Primero",
+            last: "Último",
+            next: "Siguiente",
+            previous: "Anterior"
+          },
+          zeroRecords: "No se encontraron ventas"
+        }
+      });
+    });
+  </script>
+</body>
+</html>

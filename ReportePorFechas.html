@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reporte por Fechas - S.I.V</title>
+  <link rel="stylesheet" href="Inventario.css"/>
+  <style>
+    .btn-volver {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #333;
+      margin-right: 1rem;
+    }
+
+    .titulo-header {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .filtros-fechas {
+      max-width: 600px;
+      margin: 2rem auto;
+      background-color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.08);
+    }
+
+    .filtros-fechas label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .filtros-fechas input {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .filtros-fechas button {
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.5rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      background-color: #2196f3;
+      color: white;
+      cursor: pointer;
+    }
+
+    .tabla-resultados {
+      max-width: 800px;
+      margin: 2rem auto;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 0 6px rgba(0,0,0,0.05);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .tabla-resultados th,
+    .tabla-resultados td {
+      padding: 0.8rem;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .tabla-resultados th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+
+    .tabla-resultados tr:last-child td {
+      border-bottom: none;
+    }
+
+    .sin-resultados {
+      text-align: center;
+      color: #777;
+      margin-top: 2rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="barra-superior">
+    <div class="menu-izquierdo">
+      <button class="btn-volver" onclick="location.href='Reportes.html'">←</button>
+      <span class="titulo-header">Reporte por Fechas</span>
+    </div>
+    <div class="usuario">
+      <div class="usuario-info">
+        <div class="nombre-usuario">User34234</div>
+        <div class="rol-usuario">Administrador</div>
+      </div>
+      <img src="imgs/user.png" alt="Foto de perfil" />
+    </div>
+  </header>
+
+  <main class="main-contenido">
+    <h2 class="titulo-panel">Filtrar ventas por fecha</h2>
+
+    <div class="filtros-fechas">
+      <label for="fecha-inicio">Fecha de inicio</label>
+      <input type="date" id="fecha-inicio" />
+
+      <label for="fecha-fin">Fecha de fin</label>
+      <input type="date" id="fecha-fin" />
+
+      <button onclick="generarReporte()">Generar reporte</button>
+    </div>
+
+    <div id="resultado-reporte"></div>
+  </main>
+
+  <script>
+    const ventas = [
+      { fecha: '2025-07-01', producto: 'Laptop HP 15', cantidad: 2, total: 1600 },
+      { fecha: '2025-07-03', producto: 'Mouse Inalámbrico', cantidad: 5, total: 125 },
+      { fecha: '2025-07-04', producto: 'Monitor Dell 24"', cantidad: 1, total: 230 },
+      { fecha: '2025-07-10', producto: 'Silla Ergonómica', cantidad: 2, total: 300 }
+    ];
+
+    function generarReporte() {
+      const inicio = document.getElementById('fecha-inicio').value;
+      const fin = document.getElementById('fecha-fin').value;
+      const resultado = document.getElementById('resultado-reporte');
+
+      if (!inicio || !fin) {
+        resultado.innerHTML = `<p class="sin-resultados">Por favor selecciona ambas fechas.</p>`;
+        return;
+      }
+
+      const filtradas = ventas.filter(v => v.fecha >= inicio && v.fecha <= fin);
+
+      if (filtradas.length === 0) {
+        resultado.innerHTML = `<p class="sin-resultados">No se encontraron ventas en ese rango.</p>`;
+        return;
+      }
+
+      let tabla = `
+        <table class="tabla-resultados">
+          <thead>
+            <tr><th>Fecha</th><th>Producto</th><th>Cantidad</th><th>Total ($)</th></tr>
+          </thead><tbody>
+      `;
+
+      let total = 0;
+
+      filtradas.forEach(v => {
+        tabla += `<tr>
+          <td>${v.fecha}</td>
+          <td>${v.producto}</td>
+          <td>${v.cantidad}</td>
+          <td>${v.total}</td>
+        </tr>`;
+        total += v.total;
+      });
+
+      tabla += `
+        <tr><th colspan="3">Total</th><th>${total.toFixed(2)}</th></tr>
+        </tbody></table>
+      `;
+
+      resultado.innerHTML = tabla;
+    }
+  </script>
+</body>
+</html>

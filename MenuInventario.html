@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menú - Inventario</title>
+  <link rel="stylesheet" href="Inventario.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header class="barra-superior">
+  <div class="menu-izquierdo">
+    <button class="btn-menu" id="toggle-menu">☰</button>
+    <a href="MenuPrincipal.html" class="titulo-header" style="text-decoration: none; color: inherit;">Menu</a>
+
+  </div>
+  <div class="usuario">
+    <div class="usuario-info">
+      <div class="nombre-usuario">User34234</div>
+      <div class="rol-usuario">Administrador</div>
+    </div>
+    <img src="imgs/user.png" alt="Foto de perfil">
+  </div>
+</header>
+
+<nav class="menu-lateral oculto" id="menu-lateral">
+  <ul>
+    <li><a href="MenuInventario.html"><img src="imgs/Inventario0.png" alt=""><span>Inventario</span></a></li>
+    <li><a href="MenuVentas.html"><img src="imgs/Venta.png" alt=""><span>Ventas</span></a></li>
+    <li><a href="MenuProductos.html"><img src="imgs/producto.png" alt=""><span>Productos</span></a></li>
+    <li><a href="GestionEmpleados.html"><img src="imgs/Empleados.png" alt=""><span>Empleados</span></a></li>
+    <li><a href="Reportes.html"><img src="imgs/Reportes.png" alt=""><span>Reportes</span></a></li>
+    <li><a href="Ajustes.html"><img src="imgs/Ajustes.png" alt=""><span>Ajustes</span></a></li>
+    <li><a href="CuentaUsuario.html"><img src="imgs/Cuenta.png" alt=""><span>Cuenta</span></a></li>
+    <li><a href="Ayuda.html"><img src="imgs/Ayuda.png" alt=""><span>Ayuda</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+  <main>
+    <h2 class="titulo-panel">Gestión de Inventario</h2>
+
+    <!-- GRAFICOS en tarjetas separadas -->
+    <section class="graficos">
+      <h2 style="text-align: center;">Resumen Gráfico</h2>
+      <div class="contenedor-graficos">
+        
+        <div class="tarjeta-grafico">
+          <canvas id="graficoBarras"></canvas>
+        </div>
+        
+        <div class="tarjeta-grafico">
+          <canvas id="graficoPastel"></canvas>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TARJETAS -->
+    <div class="dashboard">
+
+      <a href="ListaProductos.html" style="text-decoration: none; color: inherit;">
+        <div class="tarjeta tarjeta-productos">
+          <div class="encabezado">Lista de Productos</div>
+          <p class="ubicacion">Catálogo actualizado</p>
+          <div class="estado">
+            <span class="badge-principal">230 activos</span>
+            <span class="badge-secundario">Ver catálogo</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="OrdenesEntrega.html" style="text-decoration: none; color: inherit;">
+        <div class="tarjeta tarjeta-ordenes">
+          <div class="encabezado">Órdenes de Entrega</div>
+          <p class="ubicacion">Gestión de entregas</p>
+          <div class="estado">
+            <span class="badge-principal">5 pendientes</span>
+            <span class="badge-secundario">2 en ruta</span>
+          </div>
+        </div>
+      </a>
+
+
+      <a href="ActualizarInventario.html" style="text-decoration: none; color: inherit;">
+        <div class="tarjeta tarjeta-inventario">
+          <div class="encabezado">Actualizar Inventario</div>
+          <p class="ubicacion">Stock general</p>
+          <div class="estado">
+            <span class="badge-principal">12 bajos</span>
+            <span class="badge-secundario">3 agotados</span>
+          </div>
+        </div>
+      </a>
+
+
+    </div>
+  </main>
+
+  <!-- SCRIPT para los gráficos -->
+  <script>
+    // Gráfico de Barras
+    const ctxBarras = document.getElementById('graficoBarras').getContext('2d');
+    new Chart(ctxBarras, {
+      type: 'bar',
+      data: {
+        labels: ['Productos', 'Órdenes', 'Agotados'],
+        datasets: [{
+          label: 'Cantidad',
+          data: [230, 5, 3],
+          backgroundColor: ['#2196f3', '#4caf50', '#f44336']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Resumen de Inventario'
+          }
+        }
+      }
+    });
+
+    // Gráfico de Pastel
+    const ctxPastel = document.getElementById('graficoPastel').getContext('2d');
+    new Chart(ctxPastel, {
+      type: 'pie',
+      data: {
+        labels: ['En stock', 'Bajos', 'Agotados'],
+        datasets: [{
+          data: [85, 12, 3],
+          backgroundColor: ['#4caf50', '#ff9800', '#f44336']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Distribución del Inventario'
+          }
+        }
+      }
+    });
+  </script>
+
+  <script>
+    const toggleBtn = document.getElementById('toggle-menu');
+    const menuLateral = document.getElementById('menu-lateral');
+
+    toggleBtn.addEventListener('click', () => {
+      menuLateral.classList.toggle('oculto');
+    });
+  </script>
+
+
+</body>
+</html>
